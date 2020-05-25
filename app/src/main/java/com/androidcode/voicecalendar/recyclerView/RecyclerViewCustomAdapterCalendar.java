@@ -121,7 +121,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
         public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
             viewholder.item.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            viewholder.item.setText("" + (position+1) + ".  " + mList.get(position).getContent());
+            viewholder.item.setText("" + (position+1) + ".  " + mList.get(position).getContent().trim());
         }
 
         @Override

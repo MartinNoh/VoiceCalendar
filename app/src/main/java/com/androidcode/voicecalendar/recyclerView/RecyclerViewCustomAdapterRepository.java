@@ -124,7 +124,7 @@ public class RecyclerViewCustomAdapterRepository extends RecyclerView.Adapter<Re
             String month = time[1].length() == 2 ? time[1] : "0" + time[1];
             String day = time[2].length() == 2 ? time[2] : "0" + time[2];
             viewholder.content.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            viewholder.content.setText(year + "/" + month + "/" + day + "\t" + mList.get(position).getContent());
+            viewholder.content.setText(year + "/" + month + "/" + day + " " + mList.get(position).getContent().trim());
         }
 
         @Override
