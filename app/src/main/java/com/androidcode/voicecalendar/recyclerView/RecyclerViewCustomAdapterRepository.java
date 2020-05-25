@@ -1,4 +1,4 @@
-package com.androidcode.voicecalendar.recyclerViewCalendar;
+package com.androidcode.voicecalendar.recyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,25 +20,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
-import com.androidcode.voicecalendar.recyclerViewRepository.RecyclerViewDictionaryRepository;
 
 import java.util.ArrayList;
 
 
-public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<RecyclerViewCustomAdapterCalendar.CustomViewHolder> {
+public class RecyclerViewCustomAdapterRepository extends RecyclerView.Adapter<RecyclerViewCustomAdapterRepository.CustomViewHolder> {
 
-    private ArrayList<RecyclerViewDictionaryRepository> mList;
+    private ArrayList<RecyclerViewDictionary> mList;
     private Context mContext;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // 리스너 추가
-        protected TextView date;
         protected TextView content;
 
 
         public CustomViewHolder(View view) {
             super(view);
-            this.date = (TextView) view.findViewById(R.id.date_listitem);
             this.content = (TextView) view.findViewById(R.id.content_listitem);
 
             view.setOnCreateContextMenuListener(this); // 리스너 등록
@@ -79,7 +76,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
                                 String strDate = editTextDate.getText().toString();
                                 String strContent = editTextContent.getText().toString();
 
-                                RecyclerViewDictionaryRepository dict = new RecyclerViewDictionaryRepository(intId, strDate, strContent);
+                                RecyclerViewDictionary dict = new RecyclerViewDictionary(intId, strDate, strContent);
                                 update(intId, strDate, strContent);
                                 mList.set(getAdapterPosition(), dict);
                                 notifyItemChanged(getAdapterPosition());
@@ -104,7 +101,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
         };
     }
 
-        public RecyclerViewCustomAdapterCalendar(Context context, ArrayList<RecyclerViewDictionaryRepository> list) {
+        public RecyclerViewCustomAdapterRepository(Context context, ArrayList<RecyclerViewDictionary> list) {
             mList = list;
             mContext = context;
         }
@@ -122,15 +119,12 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
 
         @Override
         public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
-
-            viewholder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-            viewholder.content.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-
-            viewholder.date.setGravity(Gravity.CENTER);
-            viewholder.content.setGravity(Gravity.CENTER);
-
-            viewholder.date.setText(mList.get(position).getDate());
-            viewholder.content.setText(mList.get(position).getContent());
+            String[] time = mList.get(position).getDate().split("/");
+            String year = time[0];
+            String month = time[1].length() == 2 ? time[1] : "0" + time[1];
+            String day = time[2].length() == 2 ? time[2] : "0" + time[2];
+            viewholder.content.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            viewholder.content.setText(year + "/" + month + "/" + day + "\t" + mList.get(position).getContent());
         }
 
         @Override

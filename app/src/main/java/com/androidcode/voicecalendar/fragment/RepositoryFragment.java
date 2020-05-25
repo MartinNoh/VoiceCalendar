@@ -1,4 +1,4 @@
-package com.androidcode.voicecalendar.ui.Repository;
+package com.androidcode.voicecalendar.fragment;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
-import com.androidcode.voicecalendar.recyclerViewRepository.RecyclerViewCustomAdapterRepository;
-import com.androidcode.voicecalendar.recyclerViewRepository.RecyclerViewDictionaryRepository;
+import com.androidcode.voicecalendar.recyclerView.RecyclerViewCustomAdapterRepository;
+import com.androidcode.voicecalendar.recyclerView.RecyclerViewDictionary;
 
 import java.util.ArrayList;
 
 public class RepositoryFragment extends Fragment {
 
-    private ArrayList<RecyclerViewDictionaryRepository> mArrayList;
+    private ArrayList<RecyclerViewDictionary> mArrayList;
     private RecyclerViewCustomAdapterRepository mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,7 +50,7 @@ public class RepositoryFragment extends Fragment {
         Cursor cursor = db.rawQuery("select _id, date, content from tb_memo order by _id desc", null);
 
         while(cursor.moveToNext()){
-            RecyclerViewDictionaryRepository data = new RecyclerViewDictionaryRepository(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
+            RecyclerViewDictionary data = new RecyclerViewDictionary(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
             mArrayList.add(data);
         }
         db.close();

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_record"
-        android:name="com.androidcode.voicecalendar.ui.Record.RecordFragment"
+        android:name="com.androidcode.voicecalendar.fragment.RecordFragment"
         android:label="@string/title_record"
         tools:layout="@layout/fragment_record" />
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.androidcode.voicecalendar.ui.Calendar.CalendarFragment"
+        android:name="com.androidcode.voicecalendar.fragment.CalendarFragment"
         android:label="@string/title_calendar"
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/navigation_repository"
-        android:name="com.androidcode.voicecalendar.ui.Repository.RepositoryFragment"
+        android:name="com.androidcode.voicecalendar.fragment.RepositoryFragment"
         android:label="@string/title_repository"
         tools:layout="@layout/fragment_repository" />
 </navigation>

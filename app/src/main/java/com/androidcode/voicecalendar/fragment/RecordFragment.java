@@ -1,4 +1,4 @@
-package com.androidcode.voicecalendar.ui.Record;
+package com.androidcode.voicecalendar.fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -236,7 +236,7 @@ public class RecordFragment extends Fragment {
         }
         DBHelper helper = new DBHelper(getActivity());
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.execSQL("insert into tb_memo (date, content) values (?, ?)",
+        db.execSQL("INSERT INTO tb_memo (date, content) VALUES (?, ?)",
                 new String[]{date, content});
         db.close();
 

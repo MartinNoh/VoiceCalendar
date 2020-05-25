@@ -1,11 +1,11 @@
-package com.androidcode.voicecalendar.recyclerViewRepository;
+package com.androidcode.voicecalendar.recyclerView;
 
-public class RecyclerViewDictionaryRepository {
+public class RecyclerViewDictionary {
     private int id;
     private String date;
     private String content;
 
-    public RecyclerViewDictionaryRepository(int id, String date, String content) {
+    public RecyclerViewDictionary(int id, String date, String content) {
         this.id = id;
         this.date = date;
         this.content = content;
