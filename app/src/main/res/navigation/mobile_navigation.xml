@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_record">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.androidcode.voicecalendar.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_record"
+        android:name="com.androidcode.voicecalendar.ui.Record.RecordFragment"
+        android:label="@string/title_record"
+        tools:layout="@layout/fragment_record" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.androidcode.voicecalendar.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_calendar"
+        android:name="com.androidcode.voicecalendar.ui.Calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.androidcode.voicecalendar.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_repository"
+        android:name="com.androidcode.voicecalendar.ui.Repository.RepositoryFragment"
+        android:label="@string/title_repository"
+        tools:layout="@layout/fragment_repository" />
 </navigation>
