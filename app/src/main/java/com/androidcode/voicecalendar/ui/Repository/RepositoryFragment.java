@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
-import com.androidcode.voicecalendar.recyclerView.RecyclerViewCustomAdapter;
-import com.androidcode.voicecalendar.recyclerView.RecyclerViewDictionary;
+import com.androidcode.voicecalendar.recyclerViewRepository.RecyclerViewCustomAdapterRepository;
+import com.androidcode.voicecalendar.recyclerViewRepository.RecyclerViewDictionaryRepository;
 
 import java.util.ArrayList;
 
 public class RepositoryFragment extends Fragment {
 
-    private ArrayList<RecyclerViewDictionary> mArrayList;
-    private RecyclerViewCustomAdapter mAdapter;
+    private ArrayList<RecyclerViewDictionaryRepository> mArrayList;
+    private RecyclerViewCustomAdapterRepository mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class RepositoryFragment extends Fragment {
 
         mArrayList = new ArrayList<>();
 
-        mAdapter = new RecyclerViewCustomAdapter(getActivity(), mArrayList);
+        mAdapter = new RecyclerViewCustomAdapterRepository(getActivity(), mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
@@ -50,7 +50,7 @@ public class RepositoryFragment extends Fragment {
         Cursor cursor = db.rawQuery("select _id, date, content from tb_memo order by _id desc", null);
 
         while(cursor.moveToNext()){
-            RecyclerViewDictionary data = new RecyclerViewDictionary(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
+            RecyclerViewDictionaryRepository data = new RecyclerViewDictionaryRepository(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
             mArrayList.add(data);
         }
         db.close();

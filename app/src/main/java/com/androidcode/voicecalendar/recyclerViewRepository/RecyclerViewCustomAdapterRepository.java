@@ -1,4 +1,4 @@
-package com.androidcode.voicecalendar.recyclerView;
+package com.androidcode.voicecalendar.recyclerViewRepository;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -24,9 +24,9 @@ import com.androidcode.voicecalendar.db.DBHelper;
 import java.util.ArrayList;
 
 
-public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerViewCustomAdapter.CustomViewHolder> {
+public class RecyclerViewCustomAdapterRepository extends RecyclerView.Adapter<RecyclerViewCustomAdapterRepository.CustomViewHolder> {
 
-    private ArrayList<RecyclerViewDictionary> mList;
+    private ArrayList<RecyclerViewDictionaryRepository> mList;
     private Context mContext;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -78,7 +78,7 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
                                 String strDate = editTextDate.getText().toString();
                                 String strContent = editTextContent.getText().toString();
 
-                                RecyclerViewDictionary dict = new RecyclerViewDictionary(intId, strDate, strContent);
+                                RecyclerViewDictionaryRepository dict = new RecyclerViewDictionaryRepository(intId, strDate, strContent);
                                 update(intId, strDate, strContent);
                                 mList.set(getAdapterPosition(), dict);
                                 notifyItemChanged(getAdapterPosition());
@@ -103,7 +103,7 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
         };
     }
 
-        public RecyclerViewCustomAdapter(Context context, ArrayList<RecyclerViewDictionary> list) {
+        public RecyclerViewCustomAdapterRepository(Context context, ArrayList<RecyclerViewDictionaryRepository> list) {
             mList = list;
             mContext = context;
         }
@@ -112,7 +112,7 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
         public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
             View view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.recycler_view_item_list, viewGroup, false);
+                    .inflate(R.layout.recycler_view_repository_item_list, viewGroup, false);
 
             CustomViewHolder viewHolder = new CustomViewHolder(view);
 

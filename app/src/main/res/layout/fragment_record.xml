@@ -33,26 +33,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
-
-    <TextView
-        android:id="@+id/tv_instruction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="마이크를 길게 눌러주세요."
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_record"
-        app:layout_constraintStart_toStartOf="@+id/btn_record"
-        app:layout_constraintTop_toBottomOf="@+id/btn_record" />
+        app:layout_constraintVertical_bias="0.289" />
 
     <TextView
         android:id="@+id/tv_sttResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="48dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -60,5 +47,18 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_record"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/btn_record" />
+
+    <TextView
+        android:id="@+id/tv_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="마이크를 길게 눌러주세요."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_record"
+        app:layout_constraintStart_toStartOf="@+id/btn_record"
+        app:layout_constraintTop_toBottomOf="@+id/btn_record" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
