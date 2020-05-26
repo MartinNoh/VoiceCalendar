@@ -28,6 +28,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
 
     private ArrayList<RecyclerViewDictionary> mList;
     private Context mContext;
+    private String time;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // 리스너 추가
@@ -47,7 +48,6 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
             MenuItem Delete = menu.add(Menu.NONE, 1002, 2, "삭제");
             Edit.setOnMenuItemClickListener(onEditMenu);
             Delete.setOnMenuItemClickListener(onEditMenu);
-
         }
 
         // 컨텍스트 메뉴 클릭시 동작을 설정
@@ -64,6 +64,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
                         final EditText editTextDate = (EditText) view.findViewById(R.id.edittext_dialog_date);
                         final EditText editTextContent = (EditText) view.findViewById(R.id.edittext_dialog_content);
 
+                        time = mList.get(getAdapterPosition()).getDate();
                         editTextDate.setText(mList.get(getAdapterPosition()).getDate());
                         editTextContent.setText(mList.get(getAdapterPosition()).getContent());
 
@@ -78,8 +79,15 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
 
                                 RecyclerViewDictionary dict = new RecyclerViewDictionary(intId, strDate, strContent);
                                 update(intId, strDate, strContent);
-                                mList.set(getAdapterPosition(), dict);
-                                notifyItemChanged(getAdapterPosition());
+
+                                if(strDate.equals(time)){
+                                    mList.set(getAdapterPosition(), dict);
+                                    notifyItemChanged(getAdapterPosition());
+                                }else{
+                                    mList.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                    notifyItemRangeChanged(getAdapterPosition(), mList.size());
+                                }
 
                                 dialog.dismiss();
                             }
@@ -94,7 +102,6 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
                         notifyItemRangeChanged(getAdapterPosition(), mList.size());
 
                         break;
-
                 }
                 return true;
             }
@@ -121,7 +128,7 @@ public class RecyclerViewCustomAdapterCalendar extends RecyclerView.Adapter<Recy
         public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
             viewholder.item.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            viewholder.item.setText("" + (position+1) + ".  " + mList.get(position).getContent().trim());
+            viewholder.item.setText("" + (position+1) + ". " + mList.get(position).getContent().trim());
         }
 
         @Override

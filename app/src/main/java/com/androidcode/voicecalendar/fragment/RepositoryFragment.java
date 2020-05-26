@@ -47,7 +47,7 @@ public class RepositoryFragment extends Fragment {
         // SQLite
         DBHelper helper = new DBHelper(getActivity());
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select _id, date, content from tb_memo order by _id desc", null);
+        Cursor cursor = db.rawQuery("SELECT _id, date, content FROM tb_memo ORDER BY _id DESC", null);
 
         while(cursor.moveToNext()){
             RecyclerViewDictionary data = new RecyclerViewDictionary(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
