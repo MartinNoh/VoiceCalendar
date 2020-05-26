@@ -2,7 +2,6 @@ package com.androidcode.voicecalendar.fragment;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,21 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
-import com.androidcode.voicecalendar.decorators.EventDecorator;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewCustomAdapterCalendar;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewDictionary;
 
-import com.androidcode.voicecalendar.decorators.EventDecorator;
 import com.androidcode.voicecalendar.decorators.OneDayDecorator;
-import com.androidcode.voicecalendar.decorators.SaturdayDecorator;
-import com.androidcode.voicecalendar.decorators.SundayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -57,10 +50,7 @@ public class CalendarFragment extends Fragment {
         helper = new DBHelper(getActivity());
 
         // Calendar
-        materialCalendarView.addDecorators(
-                new SundayDecorator(),
-                new SaturdayDecorator(),
-                new OneDayDecorator());
+        materialCalendarView.addDecorators(new OneDayDecorator());
 
         getListCursor();
         String[] strings = new String[arrayList.size()];
@@ -125,17 +115,6 @@ public class CalendarFragment extends Fragment {
             }
 
             return dates;
-        }
-
-        @Override
-        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
-            super.onPostExecute(calendarDays);
-
-            if (getActivity().isFinishing()) {
-                return;
-            }
-
-            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, getActivity()));
         }
     }
 

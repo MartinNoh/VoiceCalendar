@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_record" />
 
     <ImageView
-        android:id="@+id/iv_round_background"
+        android:id="@+id/imageView_round"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
