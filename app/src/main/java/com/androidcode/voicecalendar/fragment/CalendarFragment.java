@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,24 +18,25 @@ import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewCustomAdapterCalendar;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewDictionary;
-import com.google.android.material.datepicker.MaterialCalendar;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CalendarFragment extends Fragment {
 
     private ArrayList<RecyclerViewDictionary> mArrayList;
     private RecyclerViewCustomAdapterCalendar mAdapter;
-    private String date;
+    private String time;
     DBHelper helper;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        CalendarView calendar = (CalendarView) root.findViewById(R.id.cv_calendar);
+        MaterialCalendarView materialCalendarView = (MaterialCalendarView) root.findViewById(R.id.calendarView);
         RecyclerView mRecyclerView = (RecyclerView) root.findViewById(R.id.rv_list);
         mArrayList = new ArrayList<>();
 
@@ -44,9 +44,10 @@ public class CalendarFragment extends Fragment {
         helper = new DBHelper(getActivity());
 
         // Calendar
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                date =  year + "/" + (month + 1) + "/" + dayOfMonth;
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                time = "" + date.getYear() + "/" + date.getMonth() + "/" + date.getDay();
                 getMemoCursor();
             }
         });
@@ -70,7 +71,7 @@ public class CalendarFragment extends Fragment {
         mArrayList.clear();
 
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT _id, date, content FROM tb_memo WHERE date = '" + date + "' ORDER BY _id DESC", null);
+        Cursor cursor = db.rawQuery("SELECT _id, date, content FROM tb_memo WHERE date = '" + time + "' ORDER BY _id DESC", null);
 
         while(cursor.moveToNext()){
             RecyclerViewDictionary data = new RecyclerViewDictionary(cursor. getInt(0), cursor.getString(1), cursor.getString(2));
