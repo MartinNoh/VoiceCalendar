@@ -127,7 +127,8 @@ public class CalendarFragment extends Fragment {
                 return;
             }
 
-            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, getActivity()));        }
+            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, getActivity()));
+        }
     }
 
     private void getListCursor()
