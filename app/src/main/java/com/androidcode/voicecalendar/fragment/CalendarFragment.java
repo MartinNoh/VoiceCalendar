@@ -2,6 +2,7 @@ package com.androidcode.voicecalendar.fragment;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidcode.voicecalendar.R;
 import com.androidcode.voicecalendar.db.DBHelper;
+import com.androidcode.voicecalendar.decorators.EventDecorator;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewCustomAdapterCalendar;
 import com.androidcode.voicecalendar.recyclerView.RecyclerViewDictionary;
 
@@ -116,6 +118,16 @@ public class CalendarFragment extends Fragment {
 
             return dates;
         }
+
+        @Override
+        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
+            super.onPostExecute(calendarDays);
+
+            if (getActivity().isFinishing()) {
+                return;
+            }
+
+            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, getActivity()));        }
     }
 
     private void getListCursor()
